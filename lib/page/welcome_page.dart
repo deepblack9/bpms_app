@@ -65,14 +65,14 @@ class _WelcomePageState extends State<WelcomePage> {
             children: <Widget>[
               new Center(
                 child: new Image(
-                    image: new AssetImage('static/images/welcome.png')),
+                    image: new AssetImage('assets/images/welcome.png')),
               ),
               new Align(
                 alignment: Alignment.bottomCenter,
                 child: new Container(
                   width: size,
                   height: size,
-                  child: new FlareActor("static/file/flare_flutter_logo_.flr",
+                  child: new FlareActor("assets/file/flare_flutter_logo_.flr",
                       alignment: Alignment.topCenter,
                       fit: BoxFit.fill,
                       animation: "Placeholder"),

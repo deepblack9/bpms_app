@@ -6,10 +6,10 @@ import 'package:bpms_app/common/style/bpms_string_base.dart';
  */
 class BPMSStringZh extends BPMSStringBase {
   @override
-  String welcomeMessage = "Welcome To Flutter";
+  String welcomeMessage = "欢迎使用本系统";
 
   @override
-  String app_name = "GSYGithubAppFlutter";
+  String app_name = "应用系统APP";
 
   @override
   String app_ok = "确定";
@@ -92,7 +92,7 @@ class BPMSStringZh extends BPMSStringBase {
   String home_theme_6 = "主题6";
 
   @override
-  String login_username_hint_text = "请输入github用户名";
+  String login_username_hint_text = "请输入用户名";
   @override
   String login_password_hint_text = "请输入密码";
   @override

@@ -210,8 +210,8 @@ class BPMSConstant {
 class BPMSICons {
   static const String FONT_FAMILY = 'wxcIconFont';
 
-  static const String DEFAULT_USER_ICON = 'static/images/logo.png';
-  static const String DEFAULT_IMAGE = 'static/images/default_img.png';
+  static const String DEFAULT_USER_ICON = 'assets/images/logo.png';
+  static const String DEFAULT_IMAGE = 'assets/images/default_img.png';
   static const String DEFAULT_REMOTE_PIC = 'https://raw.githubusercontent.com/CarGuo/BPMSGithubAppFlutter/master/static/images/logo.png';
 
   static const IconData HOME = const IconData(0xe624, fontFamily: BPMSICons.FONT_FAMILY);

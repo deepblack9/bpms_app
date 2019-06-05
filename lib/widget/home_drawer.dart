@@ -98,7 +98,7 @@ class HomeDrawer extends StatelessWidget {
                             onTap: () {},
                             child: new CircleAvatar(
                               //圆形图标控件
-                              backgroundImage: new NetworkImage(user.avatar_url ?? BPMSICons.DEFAULT_REMOTE_PIC),
+                              backgroundImage: new NetworkImage(user.avatar_url ?? BPMSICons.DEFAULT_USER_ICON),
                             ),
                           ),
                           decoration: new BoxDecoration(

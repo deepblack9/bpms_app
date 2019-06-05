@@ -76,7 +76,14 @@ flutter:
   # https://flutter.dev/assets-and-images/#from-packages
 
   assets:
-    - static/
+    - assets/images/default_img.png
+    - assets/images/logo.png
+    - assets/images/welcome.png
+    - assets/file/rejection.json
+    - assets/file/rejection2.json
+    - assets/file/flare_flutter_logo_.flr
+    - assets/file/loading_world_now.flr
+    - assets/file/Space-Demo.flr
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
   # "family" key with the font family name, and a "fonts" key with a
@@ -96,3 +103,7 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+  fonts:
+    - family: wxcIconFont
+      fonts:
+        - asset: assets/font/iconfont.ttf

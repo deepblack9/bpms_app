@@ -9,7 +9,7 @@ class BPMSStringEn extends BPMSStringBase {
   String welcomeMessage = "Welcome To Flutter";
 
   @override
-  String app_name = "GSYGithubAppFlutter";
+  String app_name = "AppFlutter";
 
   @override
   String app_ok = "ok";
