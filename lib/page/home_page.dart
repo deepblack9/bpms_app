@@ -15,6 +15,8 @@ import 'package:bpms_app/widget/bpms_tabbar_widget.dart';
 import 'package:bpms_app/widget/bpms_title_bar.dart';
 import 'package:bpms_app/widget/home_drawer.dart';
 
+import 'supervision_page.dart';
+
 /**
  * 主页
  * Created by guoshuyu
@@ -65,7 +67,7 @@ class HomePage extends StatelessWidget {
         type: BPMSTabBarWidget.BOTTOM_TAB,
         tabItems: tabs,
         tabViews: [
-//          new DynamicPage(),
+          new SupervisionPage(),
 //          new TrendPage(),
 //          new MyPage(),
         ],

@@ -28,35 +28,9 @@ class _State extends State<SupervisionPage> {
 //        scrollDirection: Axis.horizontal,
         itemCount: headerList.length,
         itemBuilder: (context, index) {
-          return new Container(
-            child: new Row(
-              children: <Widget>[
-                new Row(
-                  children: <Widget>[
-
-                  ],
-                ),
-                new Row(
-
-                ),
-                new Row(
-                  children: <Widget>[
-                    new Column(
-                    children: <Widget>[
-
-                      ]
-                    ),
-                    new Column(
-
-                    ),
-                  ],
-                ),
-              ],
-            )
+          return new ListTile(
+            title: new Text('${headerList[index]}'),
           );
-//          return new ListTile(
-//            title: new Text('${headerList[index]}'),
-//          );
 //          return new RawMaterialButton(
 //            constraints: new BoxConstraints(minWidth: 0.0, minHeight: 0.0),
 //            padding: new EdgeInsets.all(4.0),
