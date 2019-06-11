@@ -5,7 +5,8 @@ class Config {
 
 
   /// //////////////////////////////////////常量////////////////////////////////////// ///
-  static const TOKEN_KEY = "token";
+  static const TOKEN_KEY = "access_token";
+  static const TOKEN_TYPE = "bearer";
   static const USER_NAME_KEY = "user-name";
   static const PW_KEY = "user-pw";
   static const USER_BASIC_CODE = "user-basic-code";

@@ -2,11 +2,28 @@ import 'package:bpms_app/common/config/config.dart';
 
 ///地址数据
 class Address {
-  static const String host = "https://api.github.com/";
+//  static const String host = "https://api.github.com/";
+//  static const String host = "https://www.easy-mock.com/mock/5cf860cd8cdafe1c0056bf4c/api";
+  static const String host = "http://113.229.81.78:58044/api/";
   static const String hostWeb = "https://github.com/";
   static const String downloadUrl = 'https://www.pgyer.com/GSYGithubApp';
   static const String graphicHost = 'https://ghchart.rshah.org/';
   static const String updateUrl = 'https://www.pgyer.com/vj2B';
+
+  /// 登录
+  static login(username, password) {
+    return "${host}website/login?username=$username&password=$password";
+  }
+
+  ///我的用户信息 GET
+  static getMyUserInfo() {
+    return "${host}sys/user/me";
+  }
+
+  ///用户信息 get
+  static getUserInfo(userId) {
+    return "${host}sys/user/$userId";
+  }
 
   ///获取授权  post
   static getAuthorization() {
@@ -172,16 +189,6 @@ class Address {
   ///README 文件地址 get
   static readmeFile(reposNameFullName, curBranch) {
     return host + "repos/" + reposNameFullName + "/" + "readme" + ((curBranch == null) ? "" : ("?ref=" + curBranch));
-  }
-
-  ///我的用户信息 GET
-  static getMyUserInfo() {
-    return "${host}user";
-  }
-
-  ///用户信息 get
-  static getUserInfo(userName) {
-    return "${host}users/$userName";
   }
 
   /// get 是否关注

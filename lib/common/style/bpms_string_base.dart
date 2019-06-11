@@ -41,6 +41,11 @@ abstract class BPMSStringBase {
 
   String Login_out;
 
+  String home_supervision;
+  String home_examine;
+  String home_function;
+  String home_my;
+
   String home_reply;
 
   String home_change_language;
@@ -93,11 +98,6 @@ abstract class BPMSStringBase {
   String load_more_not;
 
   String load_more_text;
-
-  String home_dynamic;
-
-  String home_trend;
-  String home_my;
 
   String trend_day;
 

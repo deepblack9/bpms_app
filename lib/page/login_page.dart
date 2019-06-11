@@ -104,30 +104,31 @@ class _LoginPageState extends State<LoginPage> {
                             color: Theme.of(context).primaryColor,
                             textColor: Color(BPMSColors.textWhite),
                             onPress: () {
-//                              if (_userName == null || _userName.length == 0) {
-//                                return;
-//                              }
-//                              if (_password == null || _password.length == 0) {
-//                                return;
-//                              }
-                              CommonUtils.showLoadingDialog(context);
+                              if (_userName == null || _userName.length == 0) {
+                                return;
+                              }
+                              if (_password == null || _password.length == 0) {
+                                return;
+                              }
+//                              CommonUtils.showLoadingDialog(context);
 
-                              Navigator.pop(context);
-                              NavigatorUtils.goHome(context);
+//                              Navigator.pop(context);
+//                              NavigatorUtils.goHome(context);
+
 //                              new Future.delayed(const Duration(seconds: 1), () {
 //                                NavigatorUtils.goHome(context);
 //                                return true;
 //                              });
 
-//                              UserDao.login(_userName.trim(), _password.trim(), store).then((res) {
-//                                Navigator.pop(context);
-//                                if (res != null && res.result) {
-//                                  new Future.delayed(const Duration(seconds: 1), () {
-//                                    NavigatorUtils.goHome(context);
-//                                    return true;
-//                                  });
-//                                }
-//                              });
+                              UserDao.login(_userName.trim(), _password.trim(), store).then((res) {
+                                Navigator.pop(context);
+                                if (res != null && res.result) {
+                                  new Future.delayed(const Duration(seconds: 1), () {
+                                    NavigatorUtils.goHome(context);
+                                    return true;
+                                  });
+                                }
+                              });
                             },
                           ),
                           new Padding(padding: new EdgeInsets.all(30.0)),

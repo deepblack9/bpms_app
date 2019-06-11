@@ -56,6 +56,15 @@ class BPMSStringZh extends BPMSStringBase {
   String Login_out = "退出登录";
 
   @override
+  String home_supervision = "综合监管";
+  @override
+  String home_examine = "审核";
+  @override
+  String home_function = "功能";
+  @override
+  String home_my = "我的";
+
+  @override
   String home_reply = "问题反馈";
   @override
   String home_change_language = "语言切换";
@@ -115,13 +124,6 @@ class BPMSStringZh extends BPMSStringBase {
   String load_more_not = "没有更多数据";
   @override
   String load_more_text = "正在加载更多";
-
-  @override
-  String home_dynamic = "动态";
-  @override
-  String home_trend = "趋势";
-  @override
-  String home_my = "我的";
 
   @override
   String trend_day = '今日';

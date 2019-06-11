@@ -30,26 +30,31 @@ class UserDao {
     await LocalStorage.save(Config.USER_NAME_KEY, userName);
     await LocalStorage.save(Config.USER_BASIC_CODE, base64Str);
 
-    Map requestParams = {
-      "scopes": ['user', 'repo', 'gist', 'notifications'],
-      "note": "admin_script",
-      "client_id": Config.CLIENT_ID,
-      "client_secret": Config.CLIENT_SECRET
-    };
+//    Map requestParams = {
+//      "scopes": ['user', 'repo', 'gist', 'notifications'],
+//      "note": "admin_script",
+//      "client_id": Config.CLIENT_ID,
+//      "client_secret": Config.CLIENT_SECRET
+//    };
+
     httpManager.clearAuthorization();
 
-    var res = await httpManager.netFetch(Address.getAuthorization(), json.encode(requestParams), null, new Options(method: "post"));
+//    var res = await httpManager.netFetch(Address.getAuthorization(), json.encode(requestParams), null, new Options(method: "post"));
+    var res = await httpManager.netFetch(Address.login(userName, password), null, null, new Options(method: "post"));
     var resultData = null;
-//    if (res != null && res.result) {
-//      await LocalStorage.save(Config.PW_KEY, password);
-//      var resultData = await getUserInfo(null);
-//      if (Config.DEBUG) {
-//        print("user result " + resultData.result.toString());
-//        print(resultData.data);
-//        print(res.data.toString());
-//      }
+    if (res != null && res.result) {
+      LocalStorage.save(Config.TOKEN_KEY, res.data['data'][Config.TOKEN_KEY]);
+      await LocalStorage.save(Config.PW_KEY, password);
+      var resultData = await getUserInfo(null);
+      if (Config.DEBUG) {
+        print("user result " + resultData.result.toString());
+        print(resultData.data);
+        print(res.data.toString());
+      }
+//      User _userInfo = null;
+//      _userInfo.
 //      store.dispatch(new UpdateUserAction(resultData.data));
-//    }
+    }
     return new DataResult(resultData, res.result);
   }
 
@@ -96,25 +101,28 @@ class UserDao {
       if (userName == null) {
         res = await httpManager.netFetch(Address.getMyUserInfo(), null, null, null);
       } else {
+        print(await LocalStorage.get(Config.USER_INFO).userName);
+        User userInfo = await LocalStorage.get(Config.USER_INFO);
+        userName = userInfo.name;
         res = await httpManager.netFetch(Address.getUserInfo(userName), null, null, null);
       }
       if (res != null && res.result) {
-        String starred = "---";
-        if (res.data["type"] != "Organization") {
-          var countRes = await getUserStaredCountNet(res.data["login"]);
-          if (countRes.result) {
-            starred = countRes.data;
-          }
-        }
+//        String starred = "---";
+//        if (res.data["type"] != "Organization") {
+//          var countRes = await getUserStaredCountNet(res.data["login"]);
+//          if (countRes.result) {
+//            starred = countRes.data;
+//          }
+//        }
         User user = User.fromJson(res.data);
-        user.starred = starred;
-        if (userName == null) {
-          LocalStorage.save(Config.USER_INFO, json.encode(user.toJson()));
-        } else {
-          if (needDb) {
-            provider.insert(userName, json.encode(user.toJson()));
-          }
-        }
+//        user.starred = starred;
+//        if (userName == null) {
+//          LocalStorage.save(Config.USER_INFO, json.encode(user.toJson()));
+//        } else {
+//          if (needDb) {
+//            provider.insert(userName, json.encode(user.toJson()));
+//          }
+//        }
         return new DataResult(user, true);
       } else {
         return new DataResult(res.data, false);

@@ -56,6 +56,15 @@ class BPMSStringEn extends BPMSStringBase {
   String Login_out = "Logout";
 
   @override
+  String home_dynamic = "Supervision";
+  @override
+  String home_examine = "Examine";
+  @override
+  String home_function = "Function";
+  @override
+  String home_my = "My";
+
+  @override
   String home_reply = "Feedback";
   @override
   String home_change_language = "Language";
@@ -115,13 +124,6 @@ class BPMSStringEn extends BPMSStringBase {
   String load_more_not = "nothing";
   @override
   String load_more_text = "loading";
-
-  @override
-  String home_dynamic = "Dynamic";
-  @override
-  String home_trend = "Trend";
-  @override
-  String home_my = "My";
 
   @override
   String trend_day = 'today';

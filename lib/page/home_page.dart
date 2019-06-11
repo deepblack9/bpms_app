@@ -50,8 +50,9 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Widget> tabs = [
-      _renderTab(BPMSICons.MAIN_DT, CommonUtils.getLocale(context).home_dynamic),
-      _renderTab(BPMSICons.MAIN_QS, CommonUtils.getLocale(context).home_trend),
+      _renderTab(BPMSICons.MAIN_DT, CommonUtils.getLocale(context).home_supervision),
+      _renderTab(BPMSICons.MAIN_QS, CommonUtils.getLocale(context).home_examine),
+      _renderTab(BPMSICons.MAIN_QS, CommonUtils.getLocale(context).home_function),
       _renderTab(BPMSICons.MAIN_MY, CommonUtils.getLocale(context).home_my),
     ];
     ///增加返回按键监听
