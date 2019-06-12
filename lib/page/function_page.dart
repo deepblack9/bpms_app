@@ -1,12 +1,12 @@
 import 'package:bpms_app/common/style/bpms_style.dart';
 import 'package:flutter/material.dart';
 
-class SupervisionPage extends StatefulWidget {
+class FunctionPage extends StatefulWidget {
   @override
   _State createState() => _State();
 }
 
-class _State extends State<SupervisionPage> {
+class _State extends State<FunctionPage> {
   List<String> headerList = [];
 
 

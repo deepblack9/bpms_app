@@ -15,6 +15,9 @@ import 'package:bpms_app/widget/bpms_tabbar_widget.dart';
 import 'package:bpms_app/widget/bpms_title_bar.dart';
 import 'package:bpms_app/widget/home_drawer.dart';
 
+import 'examine_page.dart';
+import 'function_page.dart';
+import 'my_page.dart';
 import 'supervision_page.dart';
 
 /**
@@ -68,8 +71,9 @@ class HomePage extends StatelessWidget {
         tabItems: tabs,
         tabViews: [
           new SupervisionPage(),
-//          new TrendPage(),
-//          new MyPage(),
+          new ExaminePage(),
+          new FunctionPage(),
+          new MyPage(),
         ],
         backgroundColor: BPMSColors.primarySwatch,
         indicatorColor: Color(BPMSColors.white),
