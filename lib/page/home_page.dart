@@ -3,6 +3,8 @@ import 'dart:io';
 
 import 'package:android_intent/android_intent.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+//import 'package:qr_utils/qr_utils.dart';
 
 import 'package:bpms_app/common/localization/default_localizations.dart';
 import 'package:bpms_app/common/style/bpms_style.dart';
@@ -25,6 +27,7 @@ import 'supervision_page.dart';
  * Created by guoshuyu
  * Date: 2018-07-16
  */
+
 class HomePage extends StatelessWidget {
   static final String sName = "home";
 
@@ -46,7 +49,7 @@ class HomePage extends StatelessWidget {
     return new Tab(
       child: new Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[new Icon(icon, size: 16.0), new Text(text)],
+        children: <Widget>[new Icon(icon, size: 24.0), new Text(text)],
       ),
     );
   }
@@ -79,13 +82,63 @@ class HomePage extends StatelessWidget {
         indicatorColor: Color(BPMSColors.white),
         title: BPMSTitleBar(
           BPMSLocalizations.of(context).currentLocalized.app_name,
-          iconData: BPMSICons.MAIN_SEARCH,
-          needRightLocalIcon: true,
-          onPressed: () {
-//            NavigatorUtils.goSearchPage(context);
-          },
+          children: [
+//            popMenu(context),
+            _NomalPopMenu(),
+          ],
         ),
       ),
     );
   }
+
+  Widget _NomalPopMenu() {
+    return new PopupMenuButton<String>(
+      itemBuilder: (BuildContext context) => <PopupMenuItem<String>>[
+        new PopupMenuItem<String>(
+            value: 'qrscan', child: new Text('扫码')),
+        new PopupMenuItem<String>(
+            value: 'value02', child: new Text('Item Two')),
+        new PopupMenuItem<String>(
+            value: 'value03', child: new Text('Item Three')),
+        new PopupMenuItem<String>(
+            value: 'value04', child: new Text('I am Item Four'))
+      ],
+      onSelected: (String value) {
+        print(value);
+        switch(value) {
+//          case "qrscan": _openQRScanner();break;
+        }
+//          setState(() { _bodyStr = value; });
+      }
+    );
+  }
+
+//  Widget popMenu(BuildContext context) {
+//    return new IconButton(
+//      icon: new Icon(
+//        BPMSICons.MORE,
+//        size: 19.0,
+//      ),
+//      onPressed: () async {
+//        final result = await showMenu(
+//          context: context,
+////          position: RelativeRect.fromLTRB(
+////                          2000.0,
+////                          kBottomNavigationBarHeight +
+////                              MediaQueryData.fromWindow(window).padding.top,
+////                          0.0,
+////                          0.0),
+//          position: RelativeRect.fromLTRB(250.0, 86.0, 5.0, 100.0),
+////    position: RelativeRect.fromLTRB(1000.0, 1000.0, 0.0, 10.0),
+//          items: <PopupMenuItem<String>>[
+//            new PopupMenuItem<String>( value: 'qrscan', child: new Text('扫码')),
+//            new PopupMenuItem<String>( value: 'value02', child: new Text('Item Two')),
+//            new PopupMenuItem<String>( value: 'value03', child: new Text('Item Three')),
+//            new PopupMenuItem<String>( value: 'value04', child: new Text('I am Item Four'))
+//          ],
+//        );
+////            NavigatorUtils.goSearchPage(context);
+//      },
+//    );
+//  }
 }
