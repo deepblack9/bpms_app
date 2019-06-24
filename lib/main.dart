@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:redux/redux.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+//import 'package:flutter_just_toast/flutter_just_toast.dart';
+//import 'package:fluttertoast/fluttertoast.dart';
 //import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 import 'common/event/http_error_event.dart';
@@ -132,31 +133,37 @@ class _BPMSLocalizations extends State<BPMSLocalizations> {
   errorHandleFunction(int code, message) {
     switch (code) {
       case Code.NETWORK_ERROR:
-        Fluttertoast.showToast(
-            msg: CommonUtils.getLocale(context).network_error);
+//        Toast.show(message: CommonUtils.getLocale(context).network_error,duration: Delay.SHORT);
+//        Fluttertoast.showToast(
+//            msg: CommonUtils.getLocale(context).network_error);
         break;
       case 401:
-        Fluttertoast.showToast(
-            msg: CommonUtils.getLocale(context).network_error_401);
+//        Toast.show(message: CommonUtils.getLocale(context).network_error_401,duration: Delay.SHORT);
+//        Fluttertoast.showToast(
+//            msg: CommonUtils.getLocale(context).network_error_401);
         break;
       case 403:
-        Fluttertoast.showToast(
-            msg: CommonUtils.getLocale(context).network_error_403);
+//        Toast.show(message: CommonUtils.getLocale(context).network_error_403,duration: Delay.SHORT);
+//        Fluttertoast.showToast(
+//            msg: CommonUtils.getLocale(context).network_error_403);
         break;
       case 404:
-        Fluttertoast.showToast(
-            msg: CommonUtils.getLocale(context).network_error_404);
+//        Toast.show(message: CommonUtils.getLocale(context).network_error_404,duration: Delay.SHORT);
+//        Fluttertoast.showToast(
+//            msg: CommonUtils.getLocale(context).network_error_404);
         break;
       case Code.NETWORK_TIMEOUT:
       //超时
-        Fluttertoast.showToast(
-            msg: CommonUtils.getLocale(context).network_error_timeout);
+//        Toast.show(message: CommonUtils.getLocale(context).network_error_timeout,duration: Delay.SHORT);
+//        Fluttertoast.showToast(
+//            msg: CommonUtils.getLocale(context).network_error_timeout);
         break;
       default:
-        Fluttertoast.showToast(
-            msg: CommonUtils.getLocale(context).network_error_unknown +
-                " " +
-                message);
+//        Toast.show(message: CommonUtils.getLocale(context).network_error_unknown + " " + message,duration: Delay.SHORT);
+//        Fluttertoast.showToast(
+//            msg: CommonUtils.getLocale(context).network_error_unknown +
+//                " " +
+//                message);
         break;
     }
   }

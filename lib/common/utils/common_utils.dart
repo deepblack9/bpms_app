@@ -5,7 +5,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+//import 'package:flutter_just_toast/flutter_just_toast.dart';
+//import 'package:fluttertoast/fluttertoast.dart';
 import 'package:bpms_app/common/localization/default_localizations.dart';
 import 'package:bpms_app/common/net/address.dart';
 import 'package:bpms_app/common/redux/bpms_state.dart';
@@ -16,7 +17,7 @@ import 'package:bpms_app/common/style/bpms_style.dart';
 import 'package:bpms_app/common/utils/navigator_utils.dart';
 import 'package:bpms_app/widget/bpms_flex_button.dart';
 import 'package:bpms_app/widget/issue_edit_dIalog.dart';
-import 'package:permission_handler/permission_handler.dart';
+//import 'package:permission_handler/permission_handler.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:redux/redux.dart';
@@ -82,46 +83,46 @@ class CommonUtils {
     }
   }
 
-  static getLocalPath() async {
-    Directory appDir;
-    if (Platform.isIOS) {
-      appDir = await getApplicationDocumentsDirectory();
-    } else {
-      appDir = await getExternalStorageDirectory();
-    }
-    PermissionStatus permission = await PermissionHandler()
-        .checkPermissionStatus(PermissionGroup.storage);
-    if (permission != PermissionStatus.granted) {
-      Map<PermissionGroup, PermissionStatus> permissions =
-          await PermissionHandler()
-              .requestPermissions([PermissionGroup.storage]);
-      if (permissions[PermissionGroup.storage] != PermissionStatus.granted) {
-        return null;
-      }
-    }
-    String appDocPath = appDir.path + "/bpmsgithubappflutter";
-    Directory appPath = Directory(appDocPath);
-    await appPath.create(recursive: true);
-    return appPath;
-  }
+//  static getLocalPath() async {
+//    Directory appDir;
+//    if (Platform.isIOS) {
+//      appDir = await getApplicationDocumentsDirectory();
+//    } else {
+//      appDir = await getExternalStorageDirectory();
+//    }
+//    PermissionStatus permission = await PermissionHandler()
+//        .checkPermissionStatus(PermissionGroup.storage);
+//    if (permission != PermissionStatus.granted) {
+//      Map<PermissionGroup, PermissionStatus> permissions =
+//          await PermissionHandler()
+//              .requestPermissions([PermissionGroup.storage]);
+//      if (permissions[PermissionGroup.storage] != PermissionStatus.granted) {
+//        return null;
+//      }
+//    }
+//    String appDocPath = appDir.path + "/bpmsgithubappflutter";
+//    Directory appPath = Directory(appDocPath);
+//    await appPath.create(recursive: true);
+//    return appPath;
+//  }
 
-  static saveImage(String url) async {
-    Future<String> _findPath(String imageUrl) async {
-      final file = await DefaultCacheManager().getSingleFile(url);
-      if (file == null) {
-        return null;
-      }
-      Directory localPath = await CommonUtils.getLocalPath();
-      if (localPath == null) {
-        return null;
-      }
-      final name = splitFileNameByPath(file.path);
-      final result = await file.copy(localPath.path + name);
-      return result.path;
-    }
-
-    return _findPath(url);
-  }
+//  static saveImage(String url) async {
+//    Future<String> _findPath(String imageUrl) async {
+//      final file = await DefaultCacheManager().getSingleFile(url);
+//      if (file == null) {
+//        return null;
+//      }
+//      Directory localPath = await CommonUtils.getLocalPath();
+//      if (localPath == null) {
+//        return null;
+//      }
+//      final name = splitFileNameByPath(file.path);
+//      final result = await file.copy(localPath.path + name);
+//      return result.path;
+//    }
+//
+//    return _findPath(url);
+//  }
 
   static splitFileNameByPath(String path) {
     return path.substring(path.lastIndexOf("/"));
@@ -200,8 +201,9 @@ class CommonUtils {
 
   static copy(String data, BuildContext context) {
     Clipboard.setData(new ClipboardData(text: data));
-    Fluttertoast.showToast(
-        msg: CommonUtils.getLocale(context).option_share_copy_success);
+//    Toast.show(message: CommonUtils.getLocale(context).option_share_copy_success,duration: Delay.SHORT);
+//    Fluttertoast.showToast(
+//        msg: CommonUtils.getLocale(context).option_share_copy_success);
   }
 
   static launchUrl(context, String url) {
@@ -256,10 +258,11 @@ class CommonUtils {
     if (await canLaunch(url)) {
       await launch(url);
     } else {
-      Fluttertoast.showToast(
-          msg: CommonUtils.getLocale(context).option_web_launcher_error +
-              ": " +
-              url);
+//      Toast.show(message: CommonUtils.getLocale(context).option_web_launcher_error + ": " + url,duration: Delay.SHORT);
+//      Fluttertoast.showToast(
+//          msg: CommonUtils.getLocale(context).option_web_launcher_error +
+//              ": " +
+//              url);
     }
   }
 

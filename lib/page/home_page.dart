@@ -4,7 +4,8 @@ import 'dart:io';
 import 'package:android_intent/android_intent.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-//import 'package:qr_utils/qr_utils.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:bpms_app/page/scanView.dart';
 
 import 'package:bpms_app/common/localization/default_localizations.dart';
 import 'package:bpms_app/common/style/bpms_style.dart';
@@ -28,8 +29,30 @@ import 'supervision_page.dart';
  * Date: 2018-07-16
  */
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   static final String sName = "home";
+
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+//class HomePage extends StatelessWidget {
+//  static final String sName = "home";
+  String _content = 'Undefined';
+  String _qrBase64Content = 'Undefined';
+  Image _qrImg;
+
+  TextEditingController _qrTextEditingController = TextEditingController();
+
+  String _error;
+
+  GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   /// 不退出
   Future<bool> _dialogExitApp(BuildContext context) async {
@@ -103,42 +126,20 @@ class HomePage extends StatelessWidget {
         new PopupMenuItem<String>(
             value: 'value04', child: new Text('I am Item Four'))
       ],
-      onSelected: (String value) {
+      onSelected: (String value) async {
         print(value);
         switch(value) {
-//          case "qrscan": _openQRScanner();break;
+          case "qrscan":
+            Map<PermissionGroup, PermissionStatus> permissions =
+                await PermissionHandler().requestPermissions([PermissionGroup.camera]);
+            if (permissions[PermissionGroup.camera] == PermissionStatus.granted) {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => ScanView()));
+            }
+            break;
         }
 //          setState(() { _bodyStr = value; });
       }
     );
   }
-
-//  Widget popMenu(BuildContext context) {
-//    return new IconButton(
-//      icon: new Icon(
-//        BPMSICons.MORE,
-//        size: 19.0,
-//      ),
-//      onPressed: () async {
-//        final result = await showMenu(
-//          context: context,
-////          position: RelativeRect.fromLTRB(
-////                          2000.0,
-////                          kBottomNavigationBarHeight +
-////                              MediaQueryData.fromWindow(window).padding.top,
-////                          0.0,
-////                          0.0),
-//          position: RelativeRect.fromLTRB(250.0, 86.0, 5.0, 100.0),
-////    position: RelativeRect.fromLTRB(1000.0, 1000.0, 0.0, 10.0),
-//          items: <PopupMenuItem<String>>[
-//            new PopupMenuItem<String>( value: 'qrscan', child: new Text('扫码')),
-//            new PopupMenuItem<String>( value: 'value02', child: new Text('Item Two')),
-//            new PopupMenuItem<String>( value: 'value03', child: new Text('Item Three')),
-//            new PopupMenuItem<String>( value: 'value04', child: new Text('I am Item Four'))
-//          ],
-//        );
-////            NavigatorUtils.goSearchPage(context);
-//      },
-//    );
-//  }
 }

@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:redux/redux.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_lottie/flutter_lottie.dart';
+//import 'package:flutter_lottie/flutter_lottie.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 
 import 'package:bpms_app/common/redux/bpms_state.dart';
@@ -52,7 +52,7 @@ class _WelcomePageState extends State<WelcomePage> {
     });
   }
 
-  void onViewCreatedFile(LottieController controller) {}
+//  void onViewCreatedFile(LottieController controller) {}
 
   @override
   Widget build(BuildContext context) {
