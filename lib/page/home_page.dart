@@ -20,6 +20,7 @@ import 'package:bpms_app/widget/bpms_tabbar_widget.dart';
 import 'package:bpms_app/widget/bpms_title_bar.dart';
 import 'package:bpms_app/widget/home_drawer.dart';
 
+import 'baidu_map.dart';
 import 'examine_page.dart';
 import 'function_page.dart';
 import 'my_page.dart';
@@ -192,7 +193,7 @@ class _HomePageState extends State<HomePage> {
         new PopupMenuItem<String>(
             value: 'notifiction', child: new Text('消息')),
         new PopupMenuItem<String>(
-            value: 'value03', child: new Text('Item Three')),
+            value: 'baidumap', child: new Text('百度地图')),
         new PopupMenuItem<String>(
             value: 'value04', child: new Text('I am Item Four'))
       ],
@@ -206,9 +207,11 @@ class _HomePageState extends State<HomePage> {
                   [PermissionGroup.camera]);
               if (permissions[PermissionGroup.camera] ==
                   PermissionStatus.granted) {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => ScanView()));
+                Navigator.push(context,
+                    new CupertinoPageRoute(builder: (context) => ScanView()));
+//                Navigator.push(
+//                    context,
+//                    MaterialPageRoute(builder: (context) => ScanView()));
               }
             }
             break;
@@ -217,6 +220,12 @@ class _HomePageState extends State<HomePage> {
               _showNotification(0, '新的任务', '准备要起飞了！！！');
             }
             break;
+          case 'baidumap': {
+            Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => BaiduMap()));
+          }
+          break;
         }
 //          setState(() { _bodyStr = value; });
       }

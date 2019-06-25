@@ -112,7 +112,6 @@ class _BPMSLocalizations extends State<BPMSLocalizations> {
     });
   }
 
-  var flutterLocalNotificationsPlugin = new FlutterLocalNotificationsPlugin();
   @override
   void initState() {
     super.initState();
@@ -121,69 +120,6 @@ class _BPMSLocalizations extends State<BPMSLocalizations> {
     stream = eventBus.on<HttpErrorEvent>().listen((event) {
       errorHandleFunction(event.code, event.message);
     });
-
-    var initializationSettingsAndroid =
-    new AndroidInitializationSettings('app_icon');
-    var initializationSettingsIOS = new IOSInitializationSettings(
-        onDidReceiveLocalNotification: onDidRecieveLocalNotification);
-    var initializationSettings = new InitializationSettings(
-        initializationSettingsAndroid, initializationSettingsIOS);
-    flutterLocalNotificationsPlugin.initialize(initializationSettings,
-        onSelectNotification: onSelectNotification);
-  }
-  Future onDidRecieveLocalNotification(
-      int id, String title, String body, String payload) async {
-    // 展示通知内容的 dialog.
-    showDialog(
-      context: context,
-      builder: (BuildContext context) => new CupertinoAlertDialog(
-        title: new Text(title),
-        content: new Text(body),
-        actions: [
-          CupertinoDialogAction(
-            isDefaultAction: true,
-            child: new Text('Ok'),
-            onPressed: () async {
-              Navigator.of(context, rootNavigator: true).pop();
-              await Navigator.push(
-                context,
-                new MaterialPageRoute(
-                  builder: (context) => new ScanView(),
-                ),
-              );
-            },
-          )
-        ],
-      ),
-    );
-  }
-
-  Future onSelectNotification(String payload) async {
-    if (payload != null) {
-      debugPrint('notification payload: ' + payload);
-    }
-    await Navigator.push(
-      context,
-      new MaterialPageRoute(builder: (context) => new ScanView()),
-    );
-  }
-
-  Future _showNotification() async {
-    //安卓的通知配置，必填参数是渠道id, 名称, 和描述, 可选填通知的图标，重要度等等。
-//    var androidPlatformChannelSpecifics = new AndroidNotificationDetails(
-//        'your channel id', 'your channel name', 'your channel description',
-//        importance: Importance.Max, priority: Priority.High);
-    var androidPlatformChannelSpecifics = new AndroidNotificationDetails(
-        '0', '00', '000',
-        importance: Importance.Max, priority: Priority.High);
-    //IOS的通知配置
-    var iOSPlatformChannelSpecifics = new IOSNotificationDetails();
-    var platformChannelSpecifics = new NotificationDetails(
-        androidPlatformChannelSpecifics, iOSPlatformChannelSpecifics);
-    //显示通知，其中 0 代表通知的 id，用于区分通知。
-    await flutterLocalNotificationsPlugin.show(
-        0, 'title', 'content', platformChannelSpecifics,
-        payload: 'complete');
   }
 
   @override
