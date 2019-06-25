@@ -221,9 +221,10 @@ class _HomePageState extends State<HomePage> {
             }
             break;
           case 'baidumap': {
-            Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => BaiduMap()));
+            NavigatorUtils.goBaiduMap(context);
+//            Navigator.push(
+//                context,
+//                MaterialPageRoute(builder: (context) => BaiduMap()));
           }
           break;
         }

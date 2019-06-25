@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class BaiduMap extends StatefulWidget {
+  static final String sName = "baidumap";
   @override
   _BaiduMapState createState() => _BaiduMapState();
 }

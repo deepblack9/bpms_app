@@ -18,6 +18,7 @@ import 'common/utils/common_utils.dart';
 import 'common/net/code.dart';
 import 'common/utils/navigator_utils.dart';
 import 'common/localization/bpms_localizations_delegate.dart';
+import 'page/baidu_map.dart';
 import 'page/home_page.dart';
 import 'page/login_page.dart';
 import 'page/scanView.dart';
@@ -79,6 +80,10 @@ class FlutterReduxApp extends StatelessWidget {
               LoginPage.sName: (context) {
                 return new BPMSLocalizations(
                     child: NavigatorUtils.pageContainer(new LoginPage()));
+              },
+              BaiduMap.sName: (context) {
+                return new BPMSLocalizations(
+                    child: NavigatorUtils.pageContainer(new BaiduMap()));
               },
             });
       }),

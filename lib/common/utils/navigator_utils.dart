@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:bpms_app/page/baidu_map.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:bpms_app/common/router/size_route.dart';
@@ -43,6 +44,11 @@ class NavigatorUtils {
   ///登录页
   static goLogin(BuildContext context) {
     Navigator.pushReplacementNamed(context, LoginPage.sName);
+  }
+
+  ///登录页
+  static goBaiduMap(BuildContext context) {
+    Navigator.pushReplacementNamed(context, BaiduMap.sName);
   }
 
 //  ///个人中心
