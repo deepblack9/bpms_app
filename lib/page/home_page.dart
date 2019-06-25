@@ -2,8 +2,10 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:android_intent/android_intent.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:bpms_app/page/scanView.dart';
 
@@ -49,9 +51,77 @@ class _HomePageState extends State<HomePage> {
 
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
 
+//  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = new FlutterLocalNotificationsPlugin();
+  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
+
   @override
   void initState() {
     super.initState();
+    flutterLocalNotificationsPlugin = new FlutterLocalNotificationsPlugin();
+
+    var initializationSettingsAndroid =
+    new AndroidInitializationSettings('app_icon');
+    var initializationSettingsIOS = new IOSInitializationSettings(
+        onDidReceiveLocalNotification: onDidRecieveLocalNotification);
+    var initializationSettings = new InitializationSettings(
+        initializationSettingsAndroid, initializationSettingsIOS);
+    flutterLocalNotificationsPlugin.initialize(initializationSettings,
+        onSelectNotification: onSelectNotification);
+  }
+
+  Future onDidRecieveLocalNotification(
+      int id, String title, String body, String payload) async {
+    // 展示通知内容的 dialog.
+    showDialog(
+      context: context,
+      builder: (BuildContext context) => new CupertinoAlertDialog(
+        title: new Text(title),
+        content: new Text(body),
+        actions: [
+          CupertinoDialogAction(
+            isDefaultAction: true,
+            child: new Text('Ok'),
+            onPressed: () async {
+              Navigator.of(context, rootNavigator: true).pop();
+              await Navigator.push(
+                context,
+                new MaterialPageRoute(
+                  builder: (context) => new ScanView(),
+                ),
+              );
+            },
+          )
+        ],
+      ),
+    );
+  }
+
+  Future onSelectNotification(String payload) async {
+    if (payload != null) {
+      debugPrint('notification payload: ' + payload);
+    }
+    await Navigator.push(
+      context,
+      new MaterialPageRoute(builder: (context) => new ScanView()),
+    );
+  }
+
+  Future<void> _showNotification(int id, String title, String content) async {
+    //安卓的通知配置，必填参数是渠道id, 名称, 和描述, 可选填通知的图标，重要度等等。
+//    var androidPlatformChannelSpecifics = new AndroidNotificationDetails(
+//        'your channel id', 'your channel name', 'your channel description',
+//        importance: Importance.Max, priority: Priority.High);
+    var androidPlatformChannelSpecifics = new AndroidNotificationDetails(
+        '0', '00', '000',
+        importance: Importance.Max, priority: Priority.High);
+    //IOS的通知配置
+    var iOSPlatformChannelSpecifics = new IOSNotificationDetails();
+    var platformChannelSpecifics = new NotificationDetails(
+        androidPlatformChannelSpecifics, iOSPlatformChannelSpecifics);
+    //显示通知，其中 0 代表通知的 id，用于区分通知。
+    await flutterLocalNotificationsPlugin.show(
+        id, title, content, platformChannelSpecifics,
+        payload: 'complete');
   }
 
   /// 不退出
@@ -120,7 +190,7 @@ class _HomePageState extends State<HomePage> {
         new PopupMenuItem<String>(
             value: 'qrscan', child: new Text('扫码')),
         new PopupMenuItem<String>(
-            value: 'value02', child: new Text('Item Two')),
+            value: 'notifiction', child: new Text('消息')),
         new PopupMenuItem<String>(
             value: 'value03', child: new Text('Item Three')),
         new PopupMenuItem<String>(
@@ -129,12 +199,22 @@ class _HomePageState extends State<HomePage> {
       onSelected: (String value) async {
         print(value);
         switch(value) {
-          case "qrscan":
-            Map<PermissionGroup, PermissionStatus> permissions =
-                await PermissionHandler().requestPermissions([PermissionGroup.camera]);
-            if (permissions[PermissionGroup.camera] == PermissionStatus.granted) {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => ScanView()));
+          case 'qrscan':
+            {
+              Map<PermissionGroup, PermissionStatus> permissions =
+              await PermissionHandler().requestPermissions(
+                  [PermissionGroup.camera]);
+              if (permissions[PermissionGroup.camera] ==
+                  PermissionStatus.granted) {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ScanView()));
+              }
+            }
+            break;
+          case 'notifiction':
+            {
+              _showNotification(0, '新的任务', '准备要起飞了！！！');
             }
             break;
         }
