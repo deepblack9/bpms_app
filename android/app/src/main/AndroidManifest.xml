@@ -52,6 +52,6 @@
         <!-- 百度地图key -->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="vYt9Olso8BcBn1gKoBnQre3vjZQ4vX68" />
+            android:value="2QwA5ImzuaVvPc3XfiwQYZcZ1GfjALDf" />
     </application>
 </manifest>

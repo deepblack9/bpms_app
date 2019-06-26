@@ -123,7 +123,7 @@ class _LoginPageState extends State<LoginPage> {
                               UserDao.login(_userName.trim(), _password.trim(), store).then((res) {
                                 Navigator.pop(context);
                                 if (res != null && res.result) {
-                                  new Future.delayed(const Duration(seconds: 1), () {
+                                  new Future.delayed(const Duration(milliseconds: 100), () {
                                     NavigatorUtils.goHome(context);
                                     return true;
                                   });

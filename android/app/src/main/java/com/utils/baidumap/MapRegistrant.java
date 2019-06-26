@@ -11,7 +11,7 @@ public final class MapRegistrant {
 
         if (registry.hasPlugin(key)) return;
 
-        PluginRegistry.Registrar registrar = registry.registrarFor(key);                //注册
+        PluginRegistry.Registrar registrar = registry.registrarFor(key);//注册
         //返回百度地图api
         registrar.platformViewRegistry().registerViewFactory("BaiduMap", new MapViewFactory(new StandardMessageCodec(), mapView));
     }

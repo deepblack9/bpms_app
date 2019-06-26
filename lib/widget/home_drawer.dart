@@ -192,7 +192,11 @@ class HomeDrawer extends StatelessWidget {
                               onPress: () {
                                 UserDao.clearAll(store);
                                 SqlManager.close();
-                                NavigatorUtils.goLogin(context);
+//                                NavigatorUtils.goLogin(context);
+                                new Future.delayed(const Duration(milliseconds: 100), () {
+                                  NavigatorUtils.goLogin(context);
+                                  return true;
+                                });
                               },
                             ),
                             onTap: () {}),

@@ -48,7 +48,8 @@ class NavigatorUtils {
 
   ///登录页
   static goBaiduMap(BuildContext context) {
-    Navigator.pushReplacementNamed(context, BaiduMap.sName);
+    Navigator.push(context,new MaterialPageRoute(builder: (context) => new BaiduMap()));
+//    Navigator.pushNamed(context, BaiduMap.sName);
   }
 
 //  ///个人中心
