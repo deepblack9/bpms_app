@@ -30,7 +30,7 @@ class _BaiduMapState extends State<BaiduMap> {
             new IconButton( // action button
               icon: new Icon(Icons.save),
               onPressed: () async {
-                final String result = await platform.invokeMethod('save');
+                final String result = await platform.invokeMethod('getLinePoints');
               },
             ),
           ],
